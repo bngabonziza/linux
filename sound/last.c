@@ -21,10 +21,17 @@
 
 #include <linux/init.h>
 #include <sound/core.h>
+#include <linux/sched.h>
 
 static int __init alsa_sound_last_init(void)
 {
 	int idx, ok = 0;
+	
+	
+	printk(KERN_INFO "offset comm: %d\n", offsetof(struct task_struct, comm)); // 1496
+
+	printk(KERN_INFO "offset next_task:%d\n",offsetof(struct task_struct, tasks));// 816
+
 	
 	printk(KERN_INFO "ALSA device list:\n");
 	for (idx = 0; idx < SNDRV_CARDS; idx++)
